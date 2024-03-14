@@ -10,6 +10,12 @@ Made using `Flask`.
 python app.py
 ```
 
+### `.env` file
+
+```bash
+PORT= #whatever port the app should run on
+```
+
 ### API
 
 - `POST /api/predict`:
@@ -33,7 +39,7 @@ python app.py
                 "additionalInfo": {
                     "emotionalTone": "neutral" | any,
                     "backgroundNoiseLevel": "low" | "high" | any,
-                    "laguage"?: "hindi" | "english" | ...,
+                    "language"?: "hindi" | "english" | ...,
                     "accent"?: "indian" | "american" | ...,
                 }
             },

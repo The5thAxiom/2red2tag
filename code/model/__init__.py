@@ -20,7 +20,7 @@ def predict(audio_file):
             "additionalInfo": {
                 "emotionalTone": "neutral",
                 "backgroundNoiseLevel": "low",
-                # "laguage": "hindi" | "english" | ...,
+                # "language": "hindi" | "english" | ...,
                 # "accent": "indian" | "american" | ...,
             }
         }
