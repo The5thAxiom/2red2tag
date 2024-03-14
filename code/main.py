@@ -44,7 +44,7 @@ print(os.getenv('PORT'))
 
 app.run(
     host='127.0.0.1',
-    port=os.getenv('PORT'),
+    port=5000,
     debug=True,
     load_dotenv=True
 )
