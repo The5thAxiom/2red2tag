@@ -47,29 +47,13 @@ PORT= #whatever port the app should run on
         }
         ```
 
-
-## Frontend
-
-Made using `React`.
-
-### Steps to Run (Dev Mode)
-
-```bash
-cd frontend
-npm start
-npm run dev
-npm chalado please
-```
-
-### Steps to Build (will be served at `localhost:8080/`)
-
-```bash
-cd frontend
-npm run build
-npm run build
-```
-
 ## Model
+
+## Modules
+- Detect voice presence
+- Classify emotion
+- Detect fake or real
+- Estimate background noise level
 
 ## Test Cases
 - Detect isolated ai voice
