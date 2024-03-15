@@ -1,12 +1,7 @@
 import random
+from model.bgnoise.bgnoise import detectBgNoise
 
 def predict(audio_file):
-    
-    # preprocessing
-    # feature extraction
-    # prediction
-    # preparing the response
-    
     # this dict could have more parameters which the frontend could show
     # right now this returns a random bool
     return {
@@ -19,7 +14,7 @@ def predict(audio_file):
             },
             "additionalInfo": {
                 "emotionalTone": "neutral",
-                "backgroundNoiseLevel": "low",
+                "backgroundNoiseLevel": detectBgNoise(audio_file),
                 # "language": "hindi" | "english" | ...,
                 # "accent": "indian" | "american" | ...,
             }
