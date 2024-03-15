@@ -16,7 +16,7 @@ cors = CORS(app)
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return 'hello'
 
 @app.route('/api')
 def api_index():
@@ -41,7 +41,7 @@ def api_predict():
             "responseTime": (time.perf_counter() - start_time) * 100
         }), 500
     
-@app.route('/api/predict/binary', methods=['POST'])
+@app.route('/api/predict/binary', methods=['POST']) 
 def api_predict_binary():
     start_time = time.perf_counter()
     audio_file = request.get_data()
