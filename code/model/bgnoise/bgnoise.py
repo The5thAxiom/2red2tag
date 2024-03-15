@@ -44,13 +44,10 @@ with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 def detectBgNoise(audio_file):
-    print(f'running background noise detection')
+    print(f'run bgnoise')
     features = extract_features(audio_file)
-    print(features)
     df = pd.DataFrame([features])
-    print(df)
     preds = model.predict(df)
-    print(preds)
     index_to_preds = {
         0: 'low',
         1: 'medium',
