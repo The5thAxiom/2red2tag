@@ -1,4 +1,5 @@
 import os
+import io
 import time
 import base64
 
@@ -40,10 +41,10 @@ def api_predict():
     
 @app.route('/api/predict/binary', methods=['POST']) 
 def api_predict_binary():
+    start_time = time.perf_counter()
+    audio_file = io.BytesIO(request.get_data())
+    prediction = predict(audio_file)
     try:
-        start_time = time.perf_counter()
-        audio_file = request.get_data()
-        prediction = predict(audio_file)
         return jsonify({
             "status": "success",
             "analysis": prediction['analysis'],
@@ -62,7 +63,7 @@ def api_predict_base64():
         start_time = time.perf_counter()
         request_data = request.get_json()
         audio_file_base64 = request_data['sample']
-        audio_file = base64.b64decode(audio_file_base64)
+        audio_file = io.BytesIO(base64.b64decode(audio_file_base64))
         prediction = predict(audio_file)
         return jsonify({
             "status": "success",
