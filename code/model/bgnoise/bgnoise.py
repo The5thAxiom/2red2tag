@@ -2,9 +2,10 @@ import librosa as lr
 import numpy as np
 import pandas as pd
 
-
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+from tensorflow.keras import layers, models
+
 
 def extract_features(file_path):
     # Load audio file
@@ -38,16 +39,31 @@ def extract_features(file_path):
         'spectral_contrast': np.mean(np.mean(spectral_contrast, axis=1))
     }
 
+def cnn_extract_features(audio_path, max_length=345):
+    audio_data, _ = lr.load(audio_path, sr=None)
+    mfccs = lr.feature.mfcc(y=audio_data, sr=44100, n_mfcc=40)
+    if mfccs.shape[1] < max_length:
+        mfccs = np.pad(mfccs, ((0, 0), (0, max_length - mfccs.shape[1])), mode='constant')
+    elif mfccs.shape[1] > max_length:
+        mfccs = mfccs[:, :max_length]
+    return mfccs
+
 model = None
+cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
 
 with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 def detectBgNoise(audio_file):
     print(f'run bgnoise')
+    
+    # TODO: instead of these three lines
+    # we need to convert the audio file data into 
+    # the format/shape needed by the keras model
     features = extract_features(audio_file)
     df = pd.DataFrame([features])
     preds = model.predict(df)
+
     index_to_preds = {
         0: 'low',
         1: 'medium',
