@@ -56,17 +56,13 @@ with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
 
 def detectBgNoise(audio_file):
     print(f'run bgnoise')
-    
-    # TODO: instead of these three lines
-    # we need to convert the audio file data into 
-    # the format/shape needed by the keras model
-    features = extract_features(audio_file)
-    df = pd.DataFrame([features])
-    preds = model.predict(df)
+    features = cnn_extract_features(audio_file)
+    features = np.expand_dims(features, axis=0)
+    preds = cnn_model.predict(features)
 
     index_to_preds = {
         0: 'low',
         1: 'medium',
         2: 'high'
     }
-    return index_to_preds[preds[0]]
+    return index_to_preds[np.argmax(preds)]
