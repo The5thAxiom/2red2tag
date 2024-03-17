@@ -79,4 +79,4 @@ def detectBgNoise(audio_file):
 
 if __name__ == "__main__":
     prediction = detectBgNoise(io.BytesIO(open('data/snsd/generated/noise_low/clnsp1068-low.wav', 'rb').read()))
-    print('The predicted bg noise leve is: {prediction}')
+    print(f'The predicted bg noise leve is: {prediction}')
