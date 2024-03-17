@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.image import resize
 
 def ai_human_recog(audio_file):
-    model = load_model("model/recog/audio_classification_model.h5")
+    model = load_model("model/recog/audio_classification_model_v2.h5")
     target_shape = (128, 128)
     classes = ["AI", "Human"]
 

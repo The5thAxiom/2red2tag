@@ -5,6 +5,13 @@ from model.recog import ai_human_recog
 
 import copy
 
+def get_voice_type(ai_prob,human_prob,voice_type):
+
+    if ai_prob<0.75 and ai_prob>0.35:
+        return "combo"
+
+    return voice_type
+
 def predict(audio_file):
     # this dict could have more parameters which the frontend could show
     # right now this returns a random bool
@@ -23,7 +30,7 @@ def predict(audio_file):
     return {
         "analysis": {
             "detectedVoice": is_voice,
-            "voiceType": voice_type,
+            "voiceType": get_voice_type(ai_prob,human_prob,voice_type),
             "confidenceScore": {
                 "aiProbability": ai_prob,
                 "humanProbability": human_prob
