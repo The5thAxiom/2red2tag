@@ -1,6 +1,7 @@
 from model.bgnoise import detectBgNoise
 from model.emotion import emotional_analysis
 from model.lang import transcribe_and_detect_language
+from model.recog import ai_human_recog
 
 import copy
 
@@ -16,15 +17,16 @@ def predict(audio_file):
             }
         }
 
+    voice_type, ai_prob, human_prob = ai_human_recog(copy.deepcopy(audio_file))
     emotion = emotional_analysis(transcript)
     bg_noise_level = detectBgNoise(copy.deepcopy(audio_file))
     return {
         "analysis": {
             "detectedVoice": is_voice,
-            "voiceType": "human",
+            "voiceType": voice_type,
             "confidenceScore": {
-                "apiProbability": 12,
-                "humanProbability": 12
+                "aiProbability": ai_prob,
+                "humanProbability": human_prob
             },
             "additionalInfo": {
                 "emotionalTone": emotion,
