@@ -51,8 +51,8 @@ def cnn_extract_features(audio_path, max_length=345):
 model = None
 cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
 
-with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+# with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
+#     model = pickle.load(file)
 
 def detectBgNoise(audio_file):
     print(f'run bgnoise')
