@@ -1,5 +1,6 @@
 runtime: python310
 entrypoint: gunicorn -b :8080 main:app
+timeout: 120s
 
 handlers:
 - url: /.*
