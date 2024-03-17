@@ -1,5 +1,7 @@
 from requests import post
 
+print('load emotion')
+
 def emotional_analysis(text):
   print('run emotion')
   api_key = 'AIzaSyAD-oOA-fxuBrZOvMovt-AV92XYIRuOoBI' # should be stored as an environment variable but raat 12 baje ye nahi hoga hamse

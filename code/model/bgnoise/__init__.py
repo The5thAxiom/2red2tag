@@ -48,6 +48,7 @@ def cnn_extract_features(audio_path, max_length=345):
         mfccs = mfccs[:, :max_length]
     return mfccs
 
+print('load bgnoise')
 model = None
 cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
 

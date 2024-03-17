@@ -4,8 +4,11 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.image import resize
 
+model = load_model("model/recog/audio_classification_model_v2.h5")
+print('load recog')
+
 def ai_human_recog(audio_file):
-    model = load_model("model/recog/audio_classification_model_v2.h5")
+    print('run recog')
     target_shape = (128, 128)
     classes = ["AI", "Human"]
 
