@@ -1,3 +1,4 @@
+import os
 import librosa as lr
 import numpy as np
 import pandas as pd
@@ -49,14 +50,18 @@ def cnn_extract_features(audio_path, max_length=345):
     return mfccs
 
 print('load bgnoise')
-model = None
-with open('model/bgnoise/bgnoise_cnn_model.keras', 'rb') as file:
-    with open('/tmp/model.keras', 'wb') as file2:
-        file2.write(file.read())
+cnn_model = None
 
-cnn_model = models.load_model('/tmp/model.keras')
-# with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
-#     model = pickle.load(file)
+# because it is deployed in a linux envirnoment and gcp will only let us write to /tmp locally
+if os.name == 'posix':
+    with open('model/bgnoise/bgnoise_cnn_model.keras', 'rb') as file:
+        with open('/tmp/model.keras', 'wb') as file2:
+            file2.write(file.read())
+
+    cnn_model = models.load_model('/tmp/model.keras')
+else:
+    cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
+
 
 def detectBgNoise(audio_file):
     print(f'run bgnoise')
