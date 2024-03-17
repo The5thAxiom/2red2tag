@@ -4,12 +4,14 @@ from langdetect import detect
 from pydub import AudioSegment
 import io
 
+# Initialize the recognizer
+print('load lang')
+recognizer = sr.Recognizer()
+
 # Function to transcribe audio file to text and detect language
 def transcribe_and_detect_language(audio_file: io.BytesIO):
+    print('run lang')
     try:
-        # Initialize the recognizer
-        recognizer = sr.Recognizer()
-
         # Load the WAV audio file
         with sr.AudioFile(io.BufferedReader(audio_file)) as source:
             # Record the audio data

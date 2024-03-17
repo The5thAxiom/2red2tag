@@ -1,3 +1,5 @@
+import os
+import io
 import librosa as lr
 import numpy as np
 import pandas as pd
@@ -48,11 +50,19 @@ def cnn_extract_features(audio_path, max_length=345):
         mfccs = mfccs[:, :max_length]
     return mfccs
 
-model = None
-cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
+print('load bgnoise')
+cnn_model = None
 
-# with open('model/bgnoise/bgnoise_model.pkl', 'rb') as file:
-#     model = pickle.load(file)
+# because it is deployed in a linux envirnoment and gcp will only let us write to /tmp locally
+if os.name == 'posix':
+    with open('model/bgnoise/bgnoise_cnn_model.keras', 'rb') as file:
+        with open('/tmp/model.keras', 'wb') as file2:
+            file2.write(file.read())
+
+    cnn_model = models.load_model('/tmp/model.keras')
+else:
+    cnn_model = models.load_model('model/bgnoise/bgnoise_cnn_model.keras')
+
 
 def detectBgNoise(audio_file):
     print(f'run bgnoise')
@@ -66,3 +76,7 @@ def detectBgNoise(audio_file):
         2: 'high'
     }
     return index_to_preds[np.argmax(preds)]
+
+if __name__ == "__main__":
+    prediction = detectBgNoise(io.BytesIO(open('data/snsd/generated/noise_low/clnsp1068-low.wav', 'rb').read()))
+    print('The predicted bg noise leve is: {prediction}')
