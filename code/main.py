@@ -39,7 +39,7 @@ def api_predict():
             "responseTime": (time.perf_counter() - start_time) * 100
         }), 500
     
-@app.route('/api/predict/binary', methods=['POST']) 
+@app.route('/voice/analyze', methods=['POST']) 
 def api_predict_binary():
     start_time = time.perf_counter()
     audio_file = io.BytesIO(request.get_data())

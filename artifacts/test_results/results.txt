@@ -1,0 +1,51 @@
+File name: empty_no_voice.wav
+Result:
+{
+    "analysis": {
+        "detectedVoice": false
+    },
+    "responseTime": 84.6531799999866,
+    "status": "success"
+}
+
+File name: 1.1_Audio_AI.wav
+Result:
+{
+    "analysis": {
+        "additionalInfo": {
+            "backgroundNoiseLevel": "high",
+            "emotionalTone": "neutral",
+            "language": "en",
+            "transcript": "hi there I hope you can hear me alright I've been having some trouble with my internet lately it keeps cutting out"
+        },
+        "confidenceScore": {
+            "aiProbability": 100.0,
+            "humanProbability": 0.0
+        },
+        "detectedVoice": true,
+        "voiceType": "AI"
+    },
+    "responseTime": 616.6804299999058,
+    "status": "success"
+}
+
+File name: file19.wav_16k.wav_norm.wav_mono.wav_silence.wav
+Result:
+{
+    "analysis": {
+        "additionalInfo": {
+            "backgroundNoiseLevel": "high",
+            "emotionalTone": "neutral",
+            "language": "en",
+            "transcript": "what if she did not come to the rock"
+        },
+        "confidenceScore": {
+            "aiProbability": 28.727400302886963,
+            "humanProbability": 71.27259969711304
+        },
+        "detectedVoice": true,
+        "voiceType": "Human"
+    },
+    "responseTime": 306.4146900000196,
+    "status": "success"
+}
