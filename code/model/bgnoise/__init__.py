@@ -1,4 +1,5 @@
 import os
+import io
 import librosa as lr
 import numpy as np
 import pandas as pd
@@ -75,3 +76,7 @@ def detectBgNoise(audio_file):
         2: 'high'
     }
     return index_to_preds[np.argmax(preds)]
+
+if __name__ == "__main__":
+    prediction = detectBgNoise(io.BytesIO(open('data/snsd/generated/noise_low/clnsp1068-low.wav', 'rb').read()))
+    print('The predicted bg noise leve is: {prediction}')
