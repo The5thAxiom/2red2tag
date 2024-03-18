@@ -24,4 +24,4 @@ def ai_human_recog(audio_file):
 
     # class, ai probability, human probability
 
-    return str(predicted_class), class_probabilities[0]*100, class_probabilities[1]*100
+    return str(predicted_class), class_probabilities[0], class_probabilities[1]

@@ -1,7 +1,7 @@
 from model.bgnoise import detectBgNoise
 from model.emotion import emotional_analysis
 from model.lang import transcribe_and_detect_language
-from model.recog_rawnet import ai_human_recog
+from model.ai_recog import ai_recog
 
 import copy
 
@@ -24,7 +24,7 @@ def predict(audio_file):
             }
         }
 
-    voice_type, ai_prob, human_prob = ai_human_recog(copy.deepcopy(audio_file))
+    voice_type, ai_prob, human_prob = ai_recog(copy.deepcopy(audio_file))
     emotion = emotional_analysis(transcript)
     bg_noise_level = detectBgNoise(copy.deepcopy(audio_file))
     return {

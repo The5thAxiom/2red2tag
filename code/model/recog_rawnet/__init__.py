@@ -20,9 +20,7 @@ model.load_state_dict(torch.load('model/recog_rawnet/best_model_6600.pth'))
 
 model.eval()
 
-
-
-def ai_human_recog(audio_file):
+def ai_human_recog_rawnet(audio_file):
     print('run recog_rawnet')
     path = audio_file
     sample_rate = 16000
@@ -38,7 +36,6 @@ def ai_human_recog(audio_file):
     input_tensor = input_tensor.to(device)
     input_tensor = input_tensor.unsqueeze(0)
 
-    
     with torch.no_grad():
         output, _ = model(input_tensor)
 
