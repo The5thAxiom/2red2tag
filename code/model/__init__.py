@@ -1,7 +1,7 @@
 from model.bgnoise import detectBgNoise
 from model.emotion import emotional_analysis
 from model.lang import transcribe_and_detect_language
-from model.recog import ai_human_recog
+from model.recog_rawnet import ai_human_recog
 
 import copy
 
