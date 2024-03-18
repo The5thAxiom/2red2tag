@@ -38,7 +38,11 @@ def api_predict():
             "analysis": {},
             "responseTime": (time.perf_counter() - start_time) * 100
         }), 500
-    
+
+@app.route('/ping')
+def ping():
+    return 'team redtag'
+
 @app.route('/voice/analyze', methods=['POST']) 
 def api_predict_binary():
     start_time = time.perf_counter()

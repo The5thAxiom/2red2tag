@@ -7,13 +7,7 @@ Made using `Flask`.
 ### Steps to Run
 
 ```bash
-python app.py
-```
-
-### `.env` file
-
-```bash
-PORT= #whatever port the app should run on
+python main.py
 ```
 
 ### API
