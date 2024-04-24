@@ -6,7 +6,7 @@ import base64
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from model import predict
+from model import Predictor
 
 app = Flask('voice-impersonation-backend', static_folder=os.getenv('REACT_BUILD_PATH'), static_url_path='/')
 
@@ -26,7 +26,8 @@ def api_predict():
         start_time = time.perf_counter()
         request_data = request.get_json()
         audio_file = request_data['sample']
-        prediction = predict(audio_file)
+        predictor = Predictor(audio_file)
+        prediction = predictor.predict()
         return jsonify({
             "status": "success",
             "analysis": prediction['analysis'],
@@ -47,7 +48,8 @@ def ping():
 def api_predict_binary():
     start_time = time.perf_counter()
     audio_file = io.BytesIO(request.get_data())
-    prediction = predict(audio_file)
+    predictor = Predictor(audio_file)
+    prediction = predictor.predict()
     try:
         return jsonify({
             "status": "success",
@@ -68,7 +70,8 @@ def api_predict_base64():
         request_data = request.get_json()
         audio_file_base64 = request_data['sample']
         audio_file = io.BytesIO(base64.b64decode(audio_file_base64))
-        prediction = predict(audio_file)
+        predictor = Predictor(audio_file)
+        prediction = predictor.predict()
         return jsonify({
             "status": "success",
             "analysis": prediction['analysis'],

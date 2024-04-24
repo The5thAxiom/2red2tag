@@ -16,7 +16,9 @@ def emotional_analysis(text):
     }
   res = post(url, json=payload)
   data = res.json()
-  score = data['documentSentiment']['score']
+  print(data)
+  score = 0.5
+  # score = data['documentSentiment']['score']
   
   if score < -.7:
     return 'negative'
